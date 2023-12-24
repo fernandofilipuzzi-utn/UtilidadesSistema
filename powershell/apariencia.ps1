@@ -60,7 +60,7 @@ Add-Type @"
 "@
 
 [Appearance]::SetColorBackground($color)
-[Appearance]::SetFileImgWallPapers($imgPath)
-[Appearance]::SetWindowsTheme($temaClaro)
+//[Appearance]::SetFileImgWallPapers($imgPath)
+//[Appearance]::SetWindowsTheme($temaClaro)
 
 

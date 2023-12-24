@@ -1,1 +1,3 @@
-PS C:\clear> powershell -ExecutionPolicy Bypass -File clear.ps1
+probados en windows11
+
+powershell -ExecutionPolicy Bypass -File clear.ps1
