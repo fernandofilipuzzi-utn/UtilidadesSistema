@@ -1,23 +1,23 @@
 # Lista de nombres de aplicaciones a deshabilitar
 $aplicacionesDeshabilitar = @(
-    "El Tiempo",
-    "Mapas",
+    "Microsoft.BingWeather", #El Tiempo
+    "Microsoft.WindowsMaps",
+	"Microsoft.Wind234owsMaps",
+	"Microsoft.549981C3F5F10", #cortana
+	"Microsoft.StickyNotes", #notas rápidas
+	"Microsoft.BingNews", #Noticias
+	"Microsoft.XboxDevHome",  #Dev Home
+	"Microsoft.People", #Centro de opiniones
+	"Microsoft.WindowsFeedbackHub", #Contactos
+	"Microsoft.Todos",#Microsoft To Do
+	"Microsoft.SolitaireCollection",  #Solitaire & Casual Games
     "IIS 10.0 Express",
-    "Google Chrome",
-    "Git",
-    "Centro de opiniones",
-    "Contactos",
-    "Dev Home",
-    "Microsoft Teams",
-    "Microsoft To Do",
-    "Solitaire & Casual Games",
+    "Microsoft Teams",        
     "Microsoft OneDrive",
-    "Notas rápidas",
-    "Noticias",
     "Asistencia rápida",
     "Visual Studio Community 2019",
-     "Visual Studio Studio Installer",
-     "Microsoft Visual C++",
+    "Visual Studio Studio Installer",
+    "Microsoft Visual C++",
     "Visual Web Deploy 4.0"
 )
 
@@ -36,7 +36,8 @@ foreach ($appNombre in $aplicacionesDeshabilitar) {
         $app = Get-ChildItem -Path $RegPath | Get-ItemProperty | Where-Object {$_.DisplayName -match $appNombre }
         if ($app) { break }
     }
-				
+	
+			
 	if($app)		
 	{
 		Write-Host ">> $app`n`n"
@@ -55,10 +56,20 @@ foreach ($appNombre in $aplicacionesDeshabilitar) {
 		
 		Start-Process -FilePath $path -ArgumentList "$argumentos /S /Q" -NoNewWindow -PassThru | Wait-Process
 		#Start-Process -FilePath $path -ArgumentList "$argumentos /S" -NoNewWindow -Wait
+		#Start-Process -FilePath $path -ArgumentList "$argumentos /S /Q" -NoNewWindow -Wait
 	}
 	else
 	{
-		Write-Host "$appNombre no encontrado.`n`n"
+		Get-AppxPackage -Name $RegPath | Remove-AppxPackage
+		
+		#$app=$app.InstallLocation		
+		
+		
+		
+		if(-not $app)
+		{
+			Write-Host "$appNombre no encontrado.`n`n"
+		}
 	}
 }
 Write-Host "Proceso de deshabilitación completado."

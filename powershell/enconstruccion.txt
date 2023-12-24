@@ -1,0 +1,6 @@
+$netFxPath = "HKLM:\SOFTWARE\Microsoft\NET Framework Setup\NDP\v4\Full"
+$netFxVersion = Get-ItemPropertyValue -Path $netFxPath -Name Version
+$dotnetInstallerPath=Get-ItemProperty -Path $netFxPath -Name "InstallPath"
+$dotnetInstallerPath=$dotnetInstallerPath.InstallPath
+$dotnetInstallerPath="$dotnetInstallerPath\dotnetfx.exe"
+Start-Process -Wait -FilePath $dotnetInstallerPath -ArgumentList "/x:$netFxVersion /q /norestart"
