@@ -16,5 +16,5 @@ if (Test-Path $downloadPath) {
     Start-Process -FilePath $downloadPath -ArgumentList "/addsource \\SHARE_PC\SHARE_FOLDER" -Wait
     Write-Host "Ejecutado correctamente."
 } else {
-    Write-Host "Error en la descara"
+    Write-Host "Error en la descarga"
 }
